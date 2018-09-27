@@ -32,7 +32,7 @@ struct ipv4_hdr {
 };
 
 // THL >> 4(/16) << 5(*32) >> 3(/8)
-#define TCP_FIND_THL(XX) ((uint8_t)((((uint8_t*)(&(XX)->HRF))[0] & 0xF0) >> 2))
+#define TCP_FIND_THL(XX) ((((uint8_t)((XX)->HRF)) & 0xF0) >> 2)
 
 struct tcp_hdr {
 	uint16_t src;
@@ -179,6 +179,7 @@ void pk_tcp(const struct tcp_hdr *packet_tcp, uint16_t length){
 
 	/* check header length */
 	uint8_t hl = TCP_FIND_THL(packet_tcp);
+	printf("HL Length: %u\n", hl);
 	if (hl > 60) {
     fprintf(stderr, "HL is too big to call packet valid\n");
   } else if (hl < 20) {
