@@ -39,7 +39,7 @@ struct tcp_hdr {
 	uint16_t dest;
 	uint32_t seq_number;
 	uint32_t ack_number;
-	uint16_t HRF; // THL, Reserved, Flags
+	uint16_t HRF; // THL, Reserved, Flag
 	uint16_t window_size;
 	uint16_t tcp_checksum;
 	uint16_t urg_pointer;
